@@ -1,5 +1,16 @@
 lockfileVersion: '6.0'
 
+dependencies:
+  discord-api-types:
+    specifier: ^0.37.41
+    version: 0.37.41
+  moment:
+    specifier: ^2.29.4
+    version: 2.29.4
+  zod:
+    specifier: ^3.21.4
+    version: 3.21.4
+
 devDependencies:
   '@types/node':
     specifier: ^18.15.11
@@ -2075,6 +2086,10 @@ packages:
       path-type: 4.0.0
     dev: true
 
+  /discord-api-types@0.37.41:
+    resolution: {integrity: sha512-FaPGBK9hx3zqSRX1x3KQWj+OElAJKmcyyfcdCy+U4AKv+gYuIkRySM7zd1So2sE4gc1DikkghkSBgBgKh6pe4Q==}
+    dev: false
+
   /doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
@@ -3271,6 +3286,10 @@ packages:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
+  /moment@2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
+
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
@@ -4293,7 +4312,6 @@ packages:
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
-    dev: true
 
   github.com/dmitmel/eslint-config-dmitmel/690f1b1121d342fcc8ee511ca9f2af7502f53db6(eslint@8.37.0):
     resolution: {tarball: https://codeload.github.com/dmitmel/eslint-config-dmitmel/tar.gz/690f1b1121d342fcc8ee511ca9f2af7502f53db6}

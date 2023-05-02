@@ -1,7 +1,7 @@
 {
-  "name": "plugin-template",
+  "name": "replugged-monstercat-rp",
   "version": "1.0.0",
-  "description": "A plugin template",
+  "description": "Rich Presence for Monstercat Web Player",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"
@@ -19,8 +19,8 @@
     "lint:fix": "pnpm run prettier:fix && pnpm run eslint:fix"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Puyodead1",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
@@ -32,5 +32,10 @@
     "prettier": "^2.8.7",
     "replugged": "^4.2.3",
     "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "discord-api-types": "^0.37.41",
+    "moment": "^2.29.4",
+    "zod": "^3.21.4"
   }
 }

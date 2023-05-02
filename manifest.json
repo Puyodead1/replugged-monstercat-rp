@@ -1,16 +1,16 @@
 {
-  "id": "dev.replugged.PluginTemplate",
-  "name": "Plugin Template",
-  "description": "A plugin template",
+  "id": "io.github.puyodead1.MonstercatRP",
+  "name": "Monstercat Rich Presence",
+  "description": "Rich Presence for Monstercat Web Player",
   "author": {
-    "name": "replugged",
-    "discordID": "1000992611840049192",
-    "github": "replugged-org"
+    "name": "Puyodead1",
+    "discordID": "498989696412549120",
+    "github": "Puyodead1"
   },
   "version": "1.0.0",
   "updater": {
     "type": "github",
-    "id": "replugged-org/plugin-template"
+    "id": "Puyodead1/replugged-monstercat-rp"
   },
   "license": "MIT",
   "type": "replugged-plugin",
