@@ -1,1 +1,2 @@
 export const CLIENT_ID = "937700767794610227";
+export const DEFAULT_TIMEOUT = 5_000;

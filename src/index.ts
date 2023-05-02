@@ -2,7 +2,9 @@ import moment from "moment";
 import { Logger, common } from "replugged";
 import { getAppAsset } from "./assetProvider";
 import { cfg, getClientID } from "./config";
-import { MonstercatCurrentlyPlaying, getCurrentSong, getImageURL } from "./lib/mcat";
+import { DEFAULT_TIMEOUT } from "./constants";
+import MCatError from "./lib/MCatError";
+import { MonstercatCurrentlyPlaying, getCurrentlyPlaying, getImageURL } from "./lib/mcat";
 import { Activity, ActivityAssets, ActivityButton, ActivityFlags, ActivityType } from "./types";
 
 function setActivity(activity: Activity | null): void {
@@ -14,7 +16,9 @@ function setActivity(activity: Activity | null): void {
 }
 
 const logger = Logger.plugin("MonstercatRP");
+let isStopped = false;
 let timer: NodeJS.Timer | null;
+let timeout = DEFAULT_TIMEOUT;
 
 async function runTimer(): Promise<void> {
   // logger.log("Timer!");
@@ -22,26 +26,29 @@ async function runTimer(): Promise<void> {
   try {
     const activity = (await getActivity()) || null;
     logger.log("Received activity", activity);
-    if (timer)
+    if (timer && !isStopped)
       // Fixes any async weirdness when disabling
       setActivity(activity);
   } catch (e) {
     logger.error("Error getting activity", e);
   }
+
+  if (!isStopped) timer = setTimeout(runTimer, timeout);
 }
 
 async function getActivity(): Promise<Activity | undefined> {
   let currentlyPlaying: MonstercatCurrentlyPlaying;
   try {
-    currentlyPlaying = await getCurrentSong();
+    if (timeout !== DEFAULT_TIMEOUT) timeout = DEFAULT_TIMEOUT;
+    currentlyPlaying = await getCurrentlyPlaying();
   } catch (e) {
-    logger.error("Failed to get current song");
-    logger.error(e);
-    return;
-  }
-
-  if (!currentlyPlaying) {
-    logger.log("No current song?");
+    if (e instanceof MCatError && e.statusCode === 404) {
+      // probably nothing is playing
+      timeout = 30_000;
+      logger.log("It seems nothing is playing, waiting 30 seconds");
+      return;
+    }
+    logger.error("Failed to get currently playing", e);
     return;
   }
 
@@ -57,9 +64,8 @@ async function getActivity(): Promise<Activity | undefined> {
   const assets: ActivityAssets = {
     /* eslint-disable @typescript-eslint/naming-convention */
     large_image: getImageURL(current.CatalogId),
-    large_text: current.CatalogId,
     small_image: "mcat",
-    small_text: "Monstercat RP",
+    small_text: "Monstercat",
     /* eslint-enable @typescript-eslint/naming-convention */
   };
 
@@ -94,7 +100,6 @@ async function getActivity(): Promise<Activity | undefined> {
 }
 
 export async function startTimer(): Promise<void> {
-  timer = setInterval(runTimer, 10_000);
   await runTimer();
 }
 
@@ -102,6 +107,7 @@ export function stopTimer(): void {
   if (timer) clearInterval(timer);
   timer = null;
   setActivity(null);
+  isStopped = true;
 }
 
 export async function start(): Promise<void> {

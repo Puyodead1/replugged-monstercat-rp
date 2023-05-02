@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { getSecret } from "../config";
+import MCatError from "./MCatError";
 
 const BASE_URL = "https://player.monstercat.app/api/currently-playing?";
 
@@ -28,7 +29,7 @@ export const MonstercatCurrentlyPlaying = z.object({
 });
 export type MonstercatCurrentlyPlaying = z.infer<typeof MonstercatCurrentlyPlaying>;
 
-export async function getCurrentSong(): Promise<MonstercatCurrentlyPlaying> {
+export async function getCurrentlyPlaying(): Promise<MonstercatCurrentlyPlaying> {
   const headers = new Headers({
     Accept: "application/json",
   });
@@ -46,7 +47,7 @@ export async function getCurrentSong(): Promise<MonstercatCurrentlyPlaying> {
   const json = await res.json();
 
   const error = MonstercatError.safeParse(json);
-  if (error.success) throw new Error(`Error ${error.data.Name}: ${error.data.Message}`);
+  if (error.success) throw new MCatError(error.data);
 
   return MonstercatCurrentlyPlaying.parse(json);
 }
