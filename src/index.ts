@@ -64,6 +64,7 @@ async function getActivity(): Promise<Activity | undefined> {
   const assets: ActivityAssets = {
     /* eslint-disable @typescript-eslint/naming-convention */
     large_image: getImageURL(current.CatalogId),
+    large_text: current.CatalogId,
     small_image: "mcat",
     small_text: "Monstercat",
     /* eslint-enable @typescript-eslint/naming-convention */
