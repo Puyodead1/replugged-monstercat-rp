@@ -82,7 +82,7 @@ async function getActivity(): Promise<Activity | undefined> {
   return {
     name: cfg.get("appName") || "Monstercat",
     application_id: getClientID(),
-    type: ActivityType.Listening,
+    type: ActivityType.Playing,
     flags: ActivityFlags.Instance,
     details: `${current.ArtistsTitle} - ${current.TrackTitle}${
       current.TrackVersion != "" ? ` (${current.TrackVersion})` : ""

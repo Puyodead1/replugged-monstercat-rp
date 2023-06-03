@@ -2,12 +2,11 @@ import {
   GatewayActivityAssets as ActivityAssets,
   GatewayActivityButton as ActivityButton,
   ActivityFlags,
-  GatewayActivityTimestamps as ActivityTimestamps,
   ActivityType,
   GatewayActivity,
 } from "discord-api-types/v10";
 
-export { ActivityFlags, ActivityType, ActivityAssets, ActivityButton, ActivityTimestamps };
+export { ActivityFlags, ActivityType, ActivityAssets, ActivityButton };
 
 export type Activity = Omit<GatewayActivity, "id" | "created_at"> & {
   metadata?: {
