@@ -60,10 +60,14 @@ async function getActivity(): Promise<Activity | undefined> {
     elapsed: moment().subtract(current.CurrentPlayLocation, "seconds"),
   };
 
+  const imageUrl = getImageURL(current.CatalogId);
+  const r = await fetch(imageUrl);
+  if (!r.ok) throw new Error(`Failed to fetch image: ${r.status} ${r.statusText}`);
+
   const buttons: ActivityButton[] = [];
   const assets: ActivityAssets = {
     /* eslint-disable @typescript-eslint/naming-convention */
-    large_image: getImageURL(current.CatalogId),
+    large_image: r.url,
     large_text: current.CatalogId,
     small_image: "mcat",
     small_text: "Monstercat",

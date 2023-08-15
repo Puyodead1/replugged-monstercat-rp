@@ -36,7 +36,7 @@
     "eslint-plugin-react": "^7.32.2",
     "moment": "^2.29.4",
     "prettier": "^2.8.7",
-    "replugged": "^4.3.0",
+    "replugged": "^4.5.2",
     "typescript": "^5.0.3",
     "zod": "^3.21.4"
   }
