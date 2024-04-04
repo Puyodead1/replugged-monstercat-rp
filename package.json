@@ -1,15 +1,16 @@
 {
   "name": "replugged-monstercat-rp",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Rich Presence for Monstercat Web Player",
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=20.0.0",
     "pnpm": ">=8.0.0"
   },
   "scripts": {
     "build": "replugged build plugin",
     "watch": "replugged build plugin --watch",
     "bundle": "replugged bundle plugin",
+    "release": "replugged release",
     "check": "tsc --noEmit",
     "prettier:check": "prettier ./src --check",
     "eslint:check": "eslint ./src",
@@ -22,22 +23,19 @@
   "author": "Puyodead1",
   "license": "MIT",
   "devDependencies": {
-    "@electron/asar": "^3.2.1",
-    "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
-    "@types/node": "^18.15.11",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "@typescript-eslint/parser": "^5.57.0",
-    "discord-api-types": "^0.37.43",
+    "discord-api-types": "^0.37.78",
     "discord-types": "^1.3.26",
-    "esbuild": "^0.15.11",
-    "eslint": "^8.37.0",
+    "moment": "^2.30.1",
+    "zod": "^3.22.4",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
     "eslint-config-dmitmel": "github:dmitmel/eslint-config-dmitmel",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-react": "^7.32.2",
-    "moment": "^2.29.4",
-    "prettier": "^2.8.7",
-    "replugged": "^4.5.2",
-    "typescript": "^5.0.3",
-    "zod": "^3.21.4"
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.2.2",
+    "replugged": "^4.7.7",
+    "typescript": "^5.3.3"
   }
 }

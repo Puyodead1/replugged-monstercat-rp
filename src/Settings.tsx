@@ -1,21 +1,20 @@
-import { common, components, util } from "replugged";
+import { components, util } from "replugged";
 import { startTimer } from ".";
 import { cfg } from "./config";
 import { CLIENT_ID } from "./constants";
 
-const { React } = common;
 const { Divider, Text, TextInput } = components;
 
 export function Settings(): React.ReactElement {
   const { value, onChange } = util.useSetting(cfg, "secret");
 
-  const onStreamingWidgetURLChange = (value: string) => {
+  const onStreamingWidgetURLChange = async (value: string): Promise<void> => {
     const { searchParams } = new URL(value);
     if (!searchParams.has("code")) return;
-    const secret = searchParams.get("code") as string;
+    const secret = searchParams.get("code")!;
     onChange(secret);
 
-    startTimer();
+    await startTimer();
   };
 
   return (

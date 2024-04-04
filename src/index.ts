@@ -1,5 +1,6 @@
 import moment from "moment";
 import { Logger, common } from "replugged";
+import { modules } from "./Modules";
 import { getAppAsset } from "./assetProvider";
 import { cfg, getClientID } from "./config";
 import { DEFAULT_TIMEOUT } from "./constants";
@@ -17,7 +18,7 @@ function setActivity(activity: Activity | null): void {
 
 const logger = Logger.plugin("MonstercatRP");
 let isStopped = false;
-let timer: NodeJS.Timer | null;
+let timer: NodeJS.Timeout | null;
 let timeout = DEFAULT_TIMEOUT;
 
 async function runTimer(): Promise<void> {
@@ -116,6 +117,9 @@ export function stopTimer(): void {
 }
 
 export async function start(): Promise<void> {
+  const res = await modules.init();
+  if (!res) return;
+
   if (cfg.has("secret")) {
     await startTimer();
   } else {
